@@ -7,7 +7,7 @@ const app = fastify();
 
 //connected fastify to mongoose
 try {
-  mongoose.connect('mongodb://localhost:27017/notes_db');
+  mongoose.connect('mongodb://localhost:27017/test',{useNewUrlParser: true,useUnifiedTopology: true });
 } catch (e) {
   console.error(e);
 }
