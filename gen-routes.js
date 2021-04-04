@@ -99,7 +99,11 @@ modelFiles.forEach((fn) => {
         params:{
             id:{type:'string'}
         },
-        body: ${Name}Schema,
+        body: { 
+          type:'object',
+          properties:${Name}Schema.properties,
+          required:[]
+        },
         response: {
           200: ${Name}Schema,
         },

@@ -8,7 +8,7 @@ const app = fastify();
 
 //connected fastify to mongoose
 try {
-  mongoose.connect("mongodb://localhost:27017", {
+  mongoose.connect("mongodb://localhost:27017/smegma", {
     useNewUrlParser: true,
     useUnifiedTopology: true,
   });
@@ -16,16 +16,6 @@ try {
   console.error(e);
 }
 
-//handle root route
-/*
-app.get('/', (request, reply) => {
-  try{
-    reply.send("Hello world!");
-  } catch(e) {
-    console.error(e);
-  }
-})
-*/
 app.register(cors, {
   maxAge: 30 * 60,
 });
@@ -64,7 +54,13 @@ app.register(oas, {
   },
   exposeRoute: true,
 });
-
+app.get("/api/hello", (request, reply) => {
+  try {
+    reply.send("Hello world!");
+  } catch (e) {
+    console.error(e);
+  }
+});
 app.register(require("./routes/index"), { prefix: "/api" });
 //set application listening on port 5000 of localhost
 app.listen(5000, (err, address) => {
