@@ -144,6 +144,6 @@ modelFiles.forEach((fn) => {
    
   `;
   const formatted = prettier.format(api, { parser: "babel" });
-  fs.writeFileSync(`./front-end/api/${Name}.js`, formatted);
+  fs.writeFileSync(`../react-app/api/${Name}.js`, formatted);
 });
 console.log("front-end api sdk created");

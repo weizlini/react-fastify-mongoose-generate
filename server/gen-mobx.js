@@ -57,7 +57,7 @@ modelFiles.forEach((fn) => {
   `;
   //const formatted = prettier.format(model, { parser: "babel" });
   fs.writeFileSync(
-    `./front-end/store/models/${name}Model.js`,
+    `../react-app/store/models/${name}Model.js`,
     prettier.format(schemaFile, { parser: "babel" })
   );
 });
@@ -96,7 +96,7 @@ modelFiles.forEach((fn) => {
   }     
   `;
   fs.writeFileSync(
-    `./front-end/store/state/${Name}State.js`,
+    `../react-app/store/state/${Name}State.js`,
     prettier.format(stateClass, { parser: "babel" })
   );
 });

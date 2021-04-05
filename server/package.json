@@ -1,0 +1,28 @@
+{
+  "name": "api-server",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "../node_modules/.bin/nodemon src/index.js",
+    "generate": "node gen-json-schemas.js; node gen-routes.js; node gen-sdk.js; node gen-mobx.js;"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "fastify": "^3.14.1",
+    "fastify-autocrud": "^0.0.4",
+    "fastify-cors": "^5.2.0",
+    "fastify-oas": "^3.0.8",
+    "http-errors": "^1.7.3",
+    "mongoose": "^5.12.3",
+    "mongoose-schema-jsonschema": "^1.4.4",
+    "nodemon": "^2.0.7",
+    "prettier": "^2.2.1",
+    "tosource": "*"
+  },
+  "devDependencies": {
+    "mobx": "^6.1.8"
+  }
+}
