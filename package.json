@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "nodemon src/index.js",
-    "generate": "node gen-json-schemas.js; node gen-routes.js"
+    "generate": "node gen-json-schemas.js; node gen-routes.js; node gen-sdk.js; node gen-mobx.js;"
   },
   "keywords": [],
   "author": "",
@@ -21,5 +21,8 @@
     "nodemon": "^2.0.7",
     "prettier": "^2.2.1",
     "tosource": "*"
+  },
+  "devDependencies": {
+    "mobx": "^6.1.8"
   }
 }
