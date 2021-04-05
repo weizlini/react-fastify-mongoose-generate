@@ -9,7 +9,7 @@ const app = fastify();
 
 //connect fastify to mongoose
 try {
-  mongoose.connect("mongodb://localhost:27017/smegma", {
+  mongoose.connect("mongodb://localhost:27017/demo", {
     useNewUrlParser: true,
     useUnifiedTopology: true,
   });
