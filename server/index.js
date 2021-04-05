@@ -3,10 +3,11 @@ const fastify = require("fastify");
 const oas = require("fastify-oas");
 const mongoose = require("mongoose");
 const cors = require("fastify-cors");
-//initialized Fastify App
+
+//initialize Fastify App
 const app = fastify();
 
-//connected fastify to mongoose
+//connect fastify to mongoose
 try {
   mongoose.connect("mongodb://localhost:27017/smegma", {
     useNewUrlParser: true,
@@ -16,10 +17,12 @@ try {
   console.error(e);
 }
 
+// add cors
 app.register(cors, {
   maxAge: 30 * 60,
 });
 
+// add swagger
 app.register(oas, {
   routePrefix: "/docs",
   addModels: true,
@@ -54,14 +57,14 @@ app.register(oas, {
   },
   exposeRoute: true,
 });
-app.get("/api/hello", (request, reply) => {
+app.get("/", (request, reply) => {
   try {
-    reply.send("Hello world!");
+    reply.send("Server is working !");
   } catch (e) {
     console.error(e);
   }
 });
-app.register(require("./routes/index"), { prefix: "/api" });
+app.register(require("./src/routes/index"), { prefix: "/api" });
 //set application listening on port 5000 of localhost
 app.listen(5000, (err, address) => {
   if (err) {
@@ -69,4 +72,5 @@ app.listen(5000, (err, address) => {
     process.exit(1);
   }
   console.log(`Server running on ${address}`);
+  console.log(`api docs are here: ${address}/docs`);
 });
