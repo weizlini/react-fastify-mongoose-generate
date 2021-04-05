@@ -8,7 +8,7 @@ const toSource = require("tosource");
 const modelFiles = fs.readdirSync("./src/models");
 modelFiles.forEach((fn) => {
   const name = fn.split(".")[0];
-  const model = require(`./server/src/models/${fn}`);
+  const model = require(`./src/models/${fn}`);
   const schema = model.jsonSchema();
   const schemaFile = prettier.format(
     `

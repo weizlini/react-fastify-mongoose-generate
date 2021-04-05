@@ -4,10 +4,12 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "postinstall":"cd react-app; npm install; cd ../server; npm install",
     "generate": "cd server; npm run generate;"
   },
   "keywords": [],
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "prettier": "^2.2.1"
+  }
 }

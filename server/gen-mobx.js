@@ -57,7 +57,7 @@ modelFiles.forEach((fn) => {
   `;
   //const formatted = prettier.format(model, { parser: "babel" });
   fs.writeFileSync(
-    `../react-app/store/models/${name}Model.js`,
+    `../react-app/src/store/models/${name}Model.js`,
     prettier.format(schemaFile, { parser: "babel" })
   );
 });
@@ -96,7 +96,7 @@ modelFiles.forEach((fn) => {
   }     
   `;
   fs.writeFileSync(
-    `../react-app/store/state/${Name}State.js`,
+    `../react-app/src/store/state/${Name}State.js`,
     prettier.format(stateClass, { parser: "babel" })
   );
 });
@@ -179,7 +179,7 @@ export const useStorePath = (...paths) => {
 export default store
 `;
 fs.writeFileSync(
-  `./front-end/store/index.js`,
+  `../react-app/src/store/index.js`,
   prettier.format(store, { parser: "babel" })
 );
 console.log("front-end mobx models generated");
