@@ -36,7 +36,11 @@ modelFiles.forEach((fn) => {
       }
       },
       ${
-        prop === "_id" ? "primary:true," : prop === "__v" ? "readOnly:true" : ""
+        prop === "_id"
+          ? "primary:true,"
+          : prop === "__v" || prop === "createdAt" || prop === "updatedAt"
+          ? "readOnly:true,pseudo:true"
+          : ""
       }                       
     })
     `;
@@ -63,12 +67,13 @@ let stateImports = "",
 modelFiles.forEach((fn) => {
   const Name = fn.split(".")[0];
   const name = Name.toLowerCase();
+  const name_s = name + "s";
   stateImports += `
   import ${Name}State from './state/${Name}State';`;
   stateDeclarations += `
-  ${name} = new ${Name}State(this)`;
+  ${name_s} = new ${Name}State(this)`;
   stateInit += `
-  await this.${name}.init()`;
+  await this.${name_s}.init()`;
 
   const stateClass = `
   import {
@@ -97,20 +102,31 @@ modelFiles.forEach((fn) => {
 });
 const store = `
 ${stateImports}
+import React from "react"
 import {
   observable,
+  isObservable,
   action,
   computed,
   makeAutoObservable,
   runInAction,
   configure
 } from 'mobx'
+
+/**
+ * The root state class which contains all others
+ * an instance of this class ios created upon first import
+ * this instance can be imported by using the default imports
+ * recommended usage is to use the hooks useStores() or useStorePath()
+ */
 class RootState {
    ${stateDeclarations}
    isLoaded = false
+   
    constructor() {
       makeAutoObservable(this)
    }
+   
    async init(){
      ${stateInit}
      runInAction(()=>{
@@ -120,8 +136,47 @@ class RootState {
 }
 configure({enforceActions:'observable'});
 const store = new RootState();
-export default store
+export const storesContext = React.createContext(store)
 
+/**
+ * hook to access all the stores, good for destructuring
+ *
+ * usage:
+ * const {test,bla} = useStores();
+ *
+ * @return {RootState} the instance of the rootState containing all other state instances
+ */
+export const useStores = () => React.useContext(storesContext)
+
+/**
+ * hook to access a particular observable deeper into the object hierarchy
+ *
+ * usage:
+ * const level1 = useStorePath("test","deep","level1");
+ *   
+ *
+ * @return {*} returns a single object down the root states object hierachy
+ */
+export const useStorePath = (...paths) => {
+    const stores = useStores()
+    let error = false
+    let current = stores
+    paths.forEach((path) => {
+      if (isObservable(current[path])) {
+        current = current[path]
+      } else {
+        error = true
+      }
+    })
+    if (error) console.error("useStorePath: path was invalid")
+    return error ? null : current
+  }
+/**
+ * the default export is simply the instance of the root state
+ * this can easily be used also within components by directly importing it
+ * however it is not ideal for component testing if the store is statically imported
+ */  
+export default store
 `;
 fs.writeFileSync(
   `./front-end/store/index.js`,

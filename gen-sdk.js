@@ -135,11 +135,11 @@ modelFiles.forEach((fn) => {
    }
    
    export default {
-     get${Name_s},
-     get${Name},
-     create${Name},
-     update${Name},
-     delete${Name} 
+     getList:get${Name_s},
+     get:get${Name},
+     create:create${Name},
+     update:update${Name},
+     delete:delete${Name} 
    }
    
   `;
