@@ -91,13 +91,13 @@ export default class BaseState {
    * @return {Promise<void>}
    */
   async restoreInitialState() {
-    let promises = Object.keys(this.save).map((key) => {
-      this.loadFromStorage(platformLocalStorage, key, this.save[key]);
-    });
+    let promises = Object.keys(this.save).map((key) =>
+      this.loadFromStorage(platformLocalStorage, key, this.save[key])
+    );
     promises.concat(
-      Object.keys(this.session).map((key) => {
-        this.loadFromStorage(platformSessionStorage, key, this.session[key]);
-      })
+      Object.keys(this.session).map((key) =>
+        this.loadFromStorage(platformSessionStorage, key, this.session[key])
+      )
     );
     await Promise.all(promises);
     this.initialStateRestored = true;

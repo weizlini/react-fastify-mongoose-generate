@@ -1,6 +1,5 @@
-import BaseModel from "./BaseModel";
 import Field, { FieldType } from "./Field";
-import { observable, computed, action, toJS, override } from "mobx";
+import { computed, toJS, override } from "mobx";
 /**
  * TODO remove this for mobx6 upgrade
  */

@@ -343,6 +343,8 @@ export default class Field {
             case FieldType.set:
               this.initValue(new Set());
               break;
+            default:
+              break;
           }
           break;
         default:
@@ -530,6 +532,9 @@ export default class Field {
           break;
         case FieldType.set:
           v = new Set();
+          break;
+        default:
+          break;
       }
     }
 

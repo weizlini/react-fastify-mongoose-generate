@@ -41,6 +41,7 @@ modelFiles.forEach((fn) => {
         {
           const textResponse = await response.text();
           const parsedResponse = JSON.parse(textResponse);
+          return parsedResponse
         }else{
           console.error(response)
           return []
@@ -58,6 +59,7 @@ modelFiles.forEach((fn) => {
         {
           const textResponse = await response.text();
           const parsedResponse = JSON.parse(textResponse);
+          return parsedResponse
         }else{
           console.error(response)
           return null
@@ -81,6 +83,7 @@ modelFiles.forEach((fn) => {
         {
           const textResponse = await response.text();
           const parsedResponse = JSON.parse(textResponse);
+          return parsedResponse
         }else{
           console.error(response)
           return null
@@ -107,6 +110,7 @@ modelFiles.forEach((fn) => {
         {
           const textResponse = await response.text();
           const parsedResponse = JSON.parse(textResponse);
+          return parsedResponse
         }else{
           console.error(response)
           return false
@@ -135,13 +139,15 @@ modelFiles.forEach((fn) => {
       } 
    }
    
-   export default {
+   const ${Name}Api =  {
      getList:get${Name_s},
      get:get${Name},
      create:create${Name},
      update:update${Name},
      delete:delete${Name} 
    }
+   
+   export default ${Name}Api
    
   `;
   const formatted = prettier.format(api, { parser: "babel" });

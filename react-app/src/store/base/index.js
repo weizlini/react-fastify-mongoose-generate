@@ -4,7 +4,6 @@ import ModelCollection from "./ModelCollection";
 import ModelMap from "./ModelMap";
 import WithMixins from "./WithMixins";
 import BaseState from "./BaseState";
-import BaseCrudState from "./BaseCrudState";
 export {
   Field,
   FieldType,
@@ -13,5 +12,4 @@ export {
   ModelMap,
   BaseModel,
   BaseState,
-  BaseCrudState,
 };

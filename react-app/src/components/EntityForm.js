@@ -1,5 +1,5 @@
 import { observer } from "mobx-react";
-import { Button, TextField } from "@material-ui/core";
+import { TextField } from "@material-ui/core";
 import * as PropTypes from "prop-types";
 
 const EntityForm = (props) => {

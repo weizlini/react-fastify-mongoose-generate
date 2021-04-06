@@ -269,7 +269,7 @@ export default class BaseModel {
       });
     } else {
       Object.keys(this).forEach((key) => {
-        if (this[key] && this[key].isModel && key != "parent") {
+        if (this[key] && this[key].isModel && key !== "parent") {
           //	console.log(`$initializing ${key} model`)
           this[key].init();
         }

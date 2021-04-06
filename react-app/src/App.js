@@ -1,4 +1,3 @@
-import logo from "./logo.svg";
 import "./App.css";
 import stores from "./store";
 import EntityAdmin from "./components/EntityAdmin";

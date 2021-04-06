@@ -11,7 +11,7 @@ modelFiles.forEach((fn) => {
   const model = require(`./src/models/${fn}`);
   const schema = model.jsonSchema();
   let schemaFile = `
-  import {observable,action,computed,makeObservable} from 'mobx' 
+  import {observable,action,makeObservable} from 'mobx' 
   import {BaseModel,Field,FieldType} from "../base/";
   import api from '../../api/${name}';
   export default class ${name}Model extends BaseModel{
@@ -71,7 +71,7 @@ modelFiles.forEach((fn) => {
   stateImports += `
   import ${Name}State from './state/${Name}State';`;
   stateDeclarations += `
-  ${name_s} = new ${Name}State(this)`;
+  @observable ${name_s} = new ${Name}State(this)`;
   stateInit += `
   await this.${name_s}.init()`;
 
@@ -80,7 +80,6 @@ modelFiles.forEach((fn) => {
     observable,
     override,
     action,
-    computed,
     makeObservable,
     flow,
   } from 'mobx';
@@ -162,7 +161,6 @@ import {
   observable,
   isObservable,
   action,
-  computed,
   makeObservable,
   runInAction,
   configure

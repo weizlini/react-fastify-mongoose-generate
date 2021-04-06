@@ -106,26 +106,26 @@
  * @constructor
  */
 export default function WithMixins() {
-	// the variable number of arguments we reverse
-	// and define an array called 'mixins'
-	let mixins = [...arguments].reverse()
+  // the variable number of arguments we reverse
+  // and define an array called 'mixins'
+  let mixins = [...arguments].reverse();
 
-	/**
-	 * we then return a function with the innermost base class as the single argument
-	 * this function will reduce the mixins array to a single class
-	 * by sequentially inheriting each mixin in turn
-	 *
-	 * @param InnermostBaseClass {*} the very base class to inherit from
-	 * @return {*} the final result of our mixin inheritance chain
-	 */
-	let extender = (InnermostBaseClass) =>
-		mixins.reduce(
-			// each mixin must be a function that returns an extended class
-			(accumulator, mixin) => mixin(accumulator),
-			InnermostBaseClass
-		)
+  /**
+   * we then return a function with the innermost base class as the single argument
+   * this function will reduce the mixins array to a single class
+   * by sequentially inheriting each mixin in turn
+   *
+   * @param InnermostBaseClass {*} the very base class to inherit from
+   * @return {*} the final result of our mixin inheritance chain
+   */
+  let extender = (InnermostBaseClass) =>
+    mixins.reduce(
+      // each mixin must be a function that returns an extended class
+      (accumulator, mixin) => mixin(accumulator),
+      InnermostBaseClass
+    );
 
-	return extender
+  return extender;
 }
 
 /**
@@ -135,52 +135,56 @@ export default function WithMixins() {
  *
  */
 export function MixinTest() {
-	const f = (base) =>
-		class extends base {
-			constructor() {
-				super()
-				this.prototypeOrder.push("f")
-			}
-		}
+  const f = (base) =>
+    class extends base {
+      constructor() {
+        super();
+        this.prototypeOrder.push("f");
+      }
+    };
 
-	const g = (base) =>
-		class extends base {
-			constructor() {
-				super()
-				this.prototypeOrder.push("g")
-			}
-		}
+  const g = (base) =>
+    class extends base {
+      constructor() {
+        super();
+        this.prototypeOrder.push("g");
+      }
+    };
 
-	class Base {
-		prototypeOrder = []
-		constructor() {
-			this.prototypeOrder.push("Base")
-		}
-	}
+  class Base {
+    prototypeOrder = [];
+    constructor() {
+      this.prototypeOrder.push("Base");
+    }
+  }
 
-	class A extends WithMixins(f, g)(Base) {
-		constructor() {
-			super()
-			this.prototypeOrder.push("A")
-		}
-	}
+  class A extends WithMixins(f, g)(Base) {
+    constructor() {
+      super();
+      this.prototypeOrder.push("A");
+    }
+  }
 
-	@WithMixins(f, g)
-	class B extends Base {
-		constructor() {
-			super()
-			this.prototypeOrder.push("B")
-		}
-	}
+  @WithMixins(f, g)
+  class B extends Base {
+    constructor() {
+      super();
+      this.prototypeOrder.push("B");
+    }
+  }
 
-	let a = new A(),
-		b = new B()
-	//console.log("WithMixin inheritance test")
-	//console.log(a.prototypeOrder.join(" <- ") + " : name = " + a.constructor.name)
-	//console.log(b.prototypeOrder.join(" <- ") + " : name = " + b.constructor.name)
-	/*	if (a.constructor.name === "A") console.log("a IS of type A")
-	else console.log("a is NOT of type A, it is of type " + b.constructor.name)
+  let a = new A(),
+    b = new B();
+  console.log("WithMixin inheritance test");
+  console.log(
+    a.prototypeOrder.join(" <- ") + " : name = " + a.constructor.name
+  );
+  console.log(
+    b.prototypeOrder.join(" <- ") + " : name = " + b.constructor.name
+  );
+  if (a.constructor.name === "A") console.log("a IS of type A");
+  else console.log("a is NOT of type A, it is of type " + b.constructor.name);
 
-	if (b.constructor.name === "B") console.log("b IS of type B")
-	else console.log("b is NOT of type B, it is of type " + b.constructor.name)*/
+  if (b.constructor.name === "B") console.log("b IS of type B");
+  else console.log("b is NOT of type B, it is of type " + b.constructor.name);
 }
