@@ -23,6 +23,7 @@ modelFiles.forEach((fn) => {
   const Name = fnNoExt.substr(0, 1).toUpperCase() + fnNoExt.substr(1);
   const Name_s = Name + "s";
   const name = Name.toLowerCase();
+  const name_s = Name_s.toLowerCase();
 
   const api = `
   /**
@@ -35,7 +36,7 @@ modelFiles.forEach((fn) => {
    
    export async function get${Name_s}(){
       try{
-        const response = await fetch(\`\${baseUrl}/${name}\`)
+        const response = await fetch(\`\${baseUrl}/${name_s}\`)
         if(response.ok)
         {
           const textResponse = await response.text();
@@ -52,7 +53,7 @@ modelFiles.forEach((fn) => {
    
    export async function get${Name}(id){
       try{
-        const response = await fetch(\`\${baseUrl}/${name}/\${id}\`)
+        const response = await fetch(\`\${baseUrl}/${name_s}/\${id}\`)
         if(response.ok)
         {
           const textResponse = await response.text();
@@ -69,7 +70,7 @@ modelFiles.forEach((fn) => {
    
    export async function create${Name}(data){
       try{
-        const response = await fetch(\`\${baseUrl}/${name}/\${id}\`,{
+        const response = await fetch(\`\${baseUrl}/${name_s}/\`,{
           method:'POST',
           headers: {
             'content-type': 'application/json',
@@ -95,7 +96,7 @@ modelFiles.forEach((fn) => {
       delete putData._id;
       delete putData.__v;
       try{
-        const response = await fetch(\`\${baseUrl}/${name}/\${data._id}\`,{
+        const response = await fetch(\`\${baseUrl}/${name_s}/\${data._id}\`,{
           method:'PUT',
           headers:{
             'content-type': 'application/json',
@@ -118,7 +119,7 @@ modelFiles.forEach((fn) => {
    
    export async function delete${Name}(id){
       try{
-        const response = await fetch(\`\${baseUrl}/${name}/\${id}\`,{
+        const response = await fetch(\`\${baseUrl}/${name_s}/\${id}\`,{
           method:'DELETE'
         })
         if(response.ok)

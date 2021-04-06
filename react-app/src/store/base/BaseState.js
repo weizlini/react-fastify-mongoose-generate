@@ -1,5 +1,4 @@
-import { action, toJS, reaction, makeAutoObservable } from "mobx";
-import { Platform, AsyncStorage } from "react-native";
+import { action, toJS, reaction, makeObservable } from "mobx";
 
 export default class BaseState {
   root;
@@ -10,7 +9,7 @@ export default class BaseState {
    * @param rootStore la référence au root
    */
   constructor(rootStore) {
-    makeAutoObservable(this);
+    makeObservable(this);
     this.root = rootStore;
   }
 
