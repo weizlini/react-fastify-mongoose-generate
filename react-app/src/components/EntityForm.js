@@ -9,40 +9,25 @@ const EntityForm = (props) => {
   if (!model) return null;
   return (
     <div>
-      <Button
-        onClick={() => {
-          isEditing ? state.cancel() : state.new();
-        }}
-      >
-        {isEditing ? "Cancel" : "New User"}
-      </Button>
       {isEditing ? (
         <div>
           {model.fields().map((f) =>
             ignored.includes(f) ? null : (
               <div>
+                {model[f].value}
                 <TextField
                   key={f}
                   value={model[f].value}
-                  error={model[f].error}
+                  error={!!model[f].error}
                   label={model[f].label}
                   onChange={(e) => {
+                    console.log(e.target.value);
                     model[f].setValue(e.target.value);
                   }}
                 />
               </div>
             )
           )}
-          <div>
-            <Button
-              color="primary"
-              onClick={async () => {
-                const response = await state.submit();
-              }}
-            >
-              {model.isNew ? "Create" : "Save"}
-            </Button>
-          </div>
         </div>
       ) : null}
     </div>

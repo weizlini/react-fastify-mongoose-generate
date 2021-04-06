@@ -1,4 +1,11 @@
-import { observable, action, computed, runInAction, toJS } from "mobx";
+import {
+  observable,
+  action,
+  computed,
+  runInAction,
+  toJS,
+  makeObservable,
+} from "mobx";
 import Model from "./BaseModel";
 
 /**
@@ -256,6 +263,7 @@ export default class Field {
    * @param {FieldOptions} options the meta data of the field
    */
   constructor(model: Model, fieldName: string, options: FieldOptions) {
+    makeObservable(this);
     this.model = model;
     this.model.__fields.push(fieldName);
     if (!options["pseudo"]) this.model.__submittable.push(fieldName);

@@ -1,10 +1,16 @@
 import BaseModel from "./BaseModel";
 import Field, { FieldType } from "./Field";
-import { observable, computed, action, toJS, override } from "mobx";
+import {
+  observable,
+  computed,
+  action,
+  toJS,
+  override,
+  makeObservable,
+} from "mobx";
 /**
  * TODO remove this for mobx6 upgrade
  */
-const makeObservable = () => {};
 
 /**
  *  this is a class where a field is a collection of models

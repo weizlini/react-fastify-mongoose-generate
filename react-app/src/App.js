@@ -1,9 +1,9 @@
 import logo from "./logo.svg";
 import "./App.css";
-import { useStores } from "./store";
+import stores from "./store";
 import EntityAdmin from "./components/EntityAdmin";
 function App() {
-  const { users } = useStores();
+  const { users } = stores;
   return (
     <div className="App">
       <EntityAdmin state={users} />

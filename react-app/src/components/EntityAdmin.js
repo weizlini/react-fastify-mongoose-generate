@@ -25,7 +25,7 @@ const EntityAdmin = (props) => {
         aria-labelledby="form-dialog-title"
       >
         <DialogTitle id="form-dialog-title">Edit</DialogTitle>
-        <DialogContent>
+        <DialogContent style={{ width: "50vw" }}>
           <DialogContentText>
             <EntityForm {...props} />
           </DialogContentText>
