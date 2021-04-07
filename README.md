@@ -9,6 +9,19 @@ consumes the api, and generates models and state classes
 that make creating and editing new entries simple
 and easy
 
+the stacks are as follows:
+
+### Front-end:
+* ReactJS, 
+* MobX (with decorators),
+* Material UI
+
+### Back-end:
+* nodeJS
+* fastify
+* mongoose
+* swagger/OAS
+
 ## Installation
 in a bash shell type in
 ```
