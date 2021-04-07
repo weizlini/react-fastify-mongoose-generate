@@ -11,6 +11,8 @@ const EntityList = (props) => {
     <div>
       <div>
         <Button
+          color="primary"
+          variant="contained"
           onClick={() => {
             state.new();
           }}
@@ -29,13 +31,19 @@ const EntityList = (props) => {
         </thead>
         <tbody>
           {list.length ? (
-            list.map((row) => (
+            list.map((data) => (
               <tr>
                 {fields.map((f) =>
-                  ignored.includes(f) ? null : <td>{row[f]}</td>
+                  ignored.includes(f) ? null : <td>{data[f]}</td>
                 )}
                 <td>
-                  <Button>Edit</Button>
+                  <Button
+                    onClick={() => {
+                      state.edit(data);
+                    }}
+                  >
+                    Edit
+                  </Button>
                 </td>
               </tr>
             ))

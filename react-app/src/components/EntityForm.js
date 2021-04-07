@@ -10,15 +10,14 @@ const EntityForm = (props) => {
   return (
     <div>
       {isEditing ? (
-        <div>
+        <div style={{ width: "500px" }}>
           {model.fields().map((f) =>
             ignored.includes(f) ? null : (
               <div>
-                {model[f].value}
                 <TextField
                   key={f}
                   value={model[f].value}
-                  error={!!model[f].error}
+                  error={model.validated && !!model[f].error}
                   label={model[f].label}
                   onChange={(e) => {
                     console.log(e.target.value);

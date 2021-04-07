@@ -2,7 +2,6 @@ import { observer } from "mobx-react";
 import * as PropTypes from "prop-types";
 import {
   Button,
-  TextField,
   Dialog,
   DialogActions,
   DialogContent,
@@ -25,18 +24,10 @@ const EntityAdmin = (props) => {
         aria-labelledby="form-dialog-title"
       >
         <DialogTitle id="form-dialog-title">Edit</DialogTitle>
-        <DialogContent style={{ width: "50vw" }}>
+        <DialogContent>
           <DialogContentText>
             <EntityForm {...props} />
           </DialogContentText>
-          <TextField
-            autoFocus
-            margin="dense"
-            id="name"
-            label="Email Address"
-            type="email"
-            fullWidth
-          />
         </DialogContent>
         <DialogActions>
           <Button

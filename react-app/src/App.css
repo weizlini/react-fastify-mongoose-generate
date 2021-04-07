@@ -1,3 +1,5 @@
+
+
 .App {
 
 }
@@ -39,15 +41,16 @@
 
 table {
   border-collapse:collapse;
-  border:1px solid #999;
+  border:1px solid #0277bd;
 }
 th{
   padding:10px;
-  background:#ccc;
-  border:1px solid #999;
+  background:#0277bd;
+  color:#fff;
+  border:1px solid #0277bd;
 }
 td{
   padding:10px;
   background:#fff;
-  border:1px solid #999;
+  border:1px solid #0277bd;
 }
