@@ -31,7 +31,7 @@ modelFiles.forEach((fn) => {
         schema.properties[prop].pattern
           ? "if(!/" +
             schema.properties[prop].pattern +
-            "/.text(v)) return 'error'"
+            "/.test(v)) return 'error'"
           : "return null"
       }
       },
@@ -51,7 +51,7 @@ modelFiles.forEach((fn) => {
       }
       
       @action async update(){
-          return api.update(this.toJS(true))
+          return api.update(this.toJS(false))
       }
   }
   `;
@@ -139,6 +139,7 @@ modelFiles.forEach((fn) => {
           if(response !==false)
           {
             this.saving = false;
+            this.load()
             this.cancel();
           }
           return response
@@ -190,6 +191,7 @@ class RootState {
 }
 configure({enforceActions:'observable'});
 const store = new RootState();
+store.init();
 export const storesContext = React.createContext(store)
 
 /**
