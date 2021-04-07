@@ -164,7 +164,8 @@ import {
   action,
   makeObservable,
   runInAction,
-  configure
+  configure,
+  when
 } from 'mobx'
 
 /**
@@ -180,6 +181,7 @@ class RootState {
    
    constructor() {
       makeObservable(this)
+      when(()=>this.isLoaded,()=>console.log("store is loaded"))
    }
    
    @action async init(){

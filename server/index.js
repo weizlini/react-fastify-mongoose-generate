@@ -3,7 +3,7 @@ const fastify = require("fastify");
 const oas = require("fastify-oas");
 const mongoose = require("mongoose");
 const cors = require("fastify-cors");
-
+const fetch = require("node-fetch");
 //initialize Fastify App
 const app = fastify();
 
@@ -57,6 +57,13 @@ app.register(oas, {
   },
   exposeRoute: true,
 });
+let eventcount = 0;
+let bla = setInterval(() => {
+  eventcount++;
+}, 100);
+
+// basic route
+
 app.get("/", (request, reply) => {
   try {
     reply.send("Server is working !");
@@ -64,7 +71,29 @@ app.get("/", (request, reply) => {
     console.error(e);
   }
 });
+
+// simple test of obtaining value of a changing local variable
+
+app.get("/events", (request, reply) => {
+  try {
+    reply.send({ eventCount: eventcount });
+  } catch (e) {
+    console.error(e);
+  }
+});
+
+//simple test of http requests on the backend
+
+app.get("/test-http", async (request, reply) => {
+  const response = await fetch("https://api.github.com/orgs/iptoki/repos");
+  const json = await response.json();
+  console.log(json);
+  return json;
+});
+
+// registering of model based CRUD
 app.register(require("./src/routes/index"), { prefix: "/api" });
+
 //set application listening on port 5000 of localhost
 app.listen(5000, (err, address) => {
   if (err) {
