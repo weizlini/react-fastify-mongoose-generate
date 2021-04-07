@@ -17,6 +17,14 @@ in a bash shell type in
 this will execute a shell script that will do the `npm install`
 for the server, the react app and the root directory
 
+## MongoDB connection
+this is simply a demo app meant to run on a local machine. if you have a standard local instance running
+exposing localhost and standard mongoDB port you should simply be able to run this
+app out of the box.
+
+if you have a different mongoDB server you can edit line 13
+in file `server/src/index.js` 
+
 ## Generating code based on mongoose models
 mogoose model defintions should be placed within the 
 `server/src/models` directory
