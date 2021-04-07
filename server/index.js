@@ -76,55 +76,6 @@ app.get("/", (request, reply) => {
   }
 });
 
-const data = [
-  {
-    name: "Hector",
-    address: "Mexico",
-  },
-  {
-    name: "Juan",
-    address: "Peru",
-  },
-  {
-    name: "Ignacio",
-    address: "Argentina",
-  },
-  {
-    name: "Samer",
-    address: "Egypt",
-  },
-  {
-    name: "John",
-    address: "USA",
-  },
-  {
-    name: "Mary",
-    address: "USA",
-  },
-  {
-    name: "Maria",
-    address: "Argentina",
-  },
-];
-
-app.route({
-  method: "GET",
-  url: "/search",
-  schema: {
-    tags: ["Search"],
-    description: "search",
-  },
-  handler: async (req, res) => {
-    const terms = req.query.terms;
-    return {
-      terms,
-      results: data.filter((entry) => {
-        return entry.name.toLowerCase().indexOf(terms.toLowerCase()) > -1;
-      }),
-    };
-  },
-});
-
 // simple test of obtaining value of a changing local variable
 
 app.get("/events", (request, reply) => {
