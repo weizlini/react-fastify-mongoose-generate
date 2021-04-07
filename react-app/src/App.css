@@ -5,7 +5,7 @@
   margin:0 auto;
   box-shadow:0 10px 15px 5px rgba(0,0,0,0.1);
   min-height:99vh;
-  padding:20px
+  padding:20px;
 }
 
 .App-logo {
@@ -57,4 +57,11 @@ td{
   padding:10px;
   background:#fff;
   border:1px solid #0277bd;
+}
+ul{
+  width:200px;
+  margin:0 auto;
+}
+li{
+  text-align:left;
 }

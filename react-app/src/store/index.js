@@ -1,4 +1,3 @@
-import NoteState from "./state/NoteState";
 import UserState from "./state/UserState";
 import React from "react";
 import {
@@ -19,7 +18,6 @@ import {
  * recommended usage is to use the hooks useStores() or useStorePath()
  */
 class RootState {
-  @observable notes = new NoteState(this);
   @observable users = new UserState(this);
   isLoaded = false;
 
@@ -32,7 +30,6 @@ class RootState {
   }
 
   @action async init() {
-    await this.notes.init();
     await this.users.init();
     runInAction(() => {
       this.isLoaded = true;
