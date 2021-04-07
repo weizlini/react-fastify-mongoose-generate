@@ -4,6 +4,7 @@ const oas = require("fastify-oas");
 const mongoose = require("mongoose");
 const cors = require("fastify-cors");
 const fetch = require("node-fetch");
+const websockets = require("fastify-websocket");
 //initialize Fastify App
 const app = fastify();
 
@@ -16,6 +17,9 @@ try {
 } catch (e) {
   console.error(e);
 }
+
+// add websocket
+app.register(websockets);
 
 // add cors
 app.register(cors, {
@@ -91,8 +95,32 @@ app.get("/test-http", async (request, reply) => {
   return json;
 });
 
+const connections = [];
+setInterval(() => {
+  connections.forEach((conn) => {
+    conn.Write(JSON.stringify({ eventCount: eventcount }));
+  });
+}, 5000);
+app.route({
+  method: "GET",
+  url: "/messages/",
+  handler: (req, reply) => {
+    // this will handle http requests
+    reply.send({ hello: "world" });
+  },
+  wsHandler: (conn, req) => {
+    // this will handle websockets connections
+    conn.setEncoding("utf8");
+    conn.write("hello client");
+    connections.push(conn);
+  },
+});
 // registering of model based CRUD
-app.register(require("./src/routes/index"), { prefix: "/api" });
+try {
+  app.register(require("./src/routes/index"), { prefix: "/api" });
+} catch (e) {
+  console.log(e);
+}
 
 //set application listening on port 5000 of localhost
 app.listen(5000, (err, address) => {
