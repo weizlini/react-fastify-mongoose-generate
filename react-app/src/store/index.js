@@ -1,3 +1,5 @@
+import NoteState from "./state/NoteState";
+import UserState from "./state/UserState";
 import React from "react";
 import {
   observable,
@@ -30,6 +32,8 @@ class RootState {
   }
 
   @action async init() {
+    await this.notes.init();
+    await this.users.init();
     runInAction(() => {
       this.isLoaded = true;
     });

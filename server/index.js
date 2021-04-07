@@ -101,20 +101,7 @@ setInterval(() => {
     conn.Write(JSON.stringify({ eventCount: eventcount }));
   });
 }, 5000);
-app.route({
-  method: "GET",
-  url: "/messages/",
-  handler: (req, reply) => {
-    // this will handle http requests
-    reply.send({ hello: "world" });
-  },
-  wsHandler: (conn, req) => {
-    // this will handle websockets connections
-    conn.setEncoding("utf8");
-    conn.write("hello client");
-    connections.push(conn);
-  },
-});
+
 // registering of model based CRUD
 try {
   app.register(require("./src/routes/index"), { prefix: "/api" });

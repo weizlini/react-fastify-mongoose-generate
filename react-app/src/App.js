@@ -1,5 +1,5 @@
 import "./App.css";
-import stores from "./store";
+import stores, { useStores } from "./store";
 import EntityAdmin from "./components/EntityAdmin";
 import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles";
 
@@ -17,10 +17,11 @@ const theme = createMuiTheme({
 console.dir(theme);
 
 function App() {
-  const { users } = stores;
+  const { users } = useStores();
   return (
     <ThemeProvider theme={theme}>
       <div className="App">
+        <p>React App is running !</p>
         <EntityAdmin state={users} />
       </div>
     </ThemeProvider>

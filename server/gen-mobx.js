@@ -90,6 +90,8 @@ modelFiles.forEach((fn) => {
   export default class ${Name}State extends BaseState{
     api = ${Name}Api;
     modelClass = ${Name}Model;
+    name = '${name}';
+   
     @observable saving = false;
     @observable isLoading = true;
     @observable list = [];

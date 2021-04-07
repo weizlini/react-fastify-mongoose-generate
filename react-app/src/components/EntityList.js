@@ -9,7 +9,7 @@ const EntityList = (props) => {
   const ignored = ["_id", "__v", "createdAt", "updatedAt"];
   return (
     <div>
-      <div>
+      <div style={{ marginBottom: "20px" }}>
         <Button
           color="primary"
           variant="contained"
@@ -17,7 +17,7 @@ const EntityList = (props) => {
             state.new();
           }}
         >
-          Create New
+          Create New {state.name}
         </Button>
       </div>
       <table>
