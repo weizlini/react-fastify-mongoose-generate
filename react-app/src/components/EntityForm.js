@@ -19,6 +19,7 @@ const EntityForm = (props) => {
                   value={model[f].value}
                   error={model.validated && !!model[f].error}
                   label={model[f].label}
+                  helperText={model.validated && model[f].error}
                   onChange={(e) => {
                     console.log(e.target.value);
                     model[f].setValue(e.target.value);

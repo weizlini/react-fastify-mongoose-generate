@@ -431,7 +431,7 @@ export default class Field {
    * the error message when a reauired field is empty
    * @type {string}
    */
-  requiredMessage: string = "errors:requiredField";
+  requiredMessage: string = "Required Field";
 
   /**
    * the name of the field. used by Model.fields()
