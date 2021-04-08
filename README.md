@@ -52,7 +52,7 @@ this will do the following:
 * generate json schemas on the server
 * generate routes for the api on the server
 * generate front-end code to consume the api
-* generate front-end mobx code
+* generate front-end mobx view models and state classes
 
 ## Running the development servers
 open a terminal in the root directory and type in 
