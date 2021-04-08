@@ -1,8 +1,14 @@
 # React and node-fastify-mongoose server
-this project contains both a server and a react app
+This is a demo app to generate a complete CRUD from 
+server-side mongoose schemas
+
+## About
+
+This project contains both a server and a react app
 
 The main aspect of this app is be able to quickly get
-an api created from mongoose model declarations
+api routes and json schema validation created from 
+mongoose schema model declarations.
 
 It also generates code within the react-app that 
 consumes the api, and generates models and state classes 
@@ -65,3 +71,26 @@ open another terminal window
 cd react-app
 npm start
 ```
+
+## Creating the UI on the front-end
+
+the `App.js` component contains a demo
+using the code generated for an extremely
+simple User model
+
+after generating the code you will have
+access to the state objects that will let you
+automatically render a grid entries and edit
+existing or create a new entry
+
+simply replace the state class destructuring
+declaration with your own after having generated
+the models and state classes
+
+and enjoy!
+
+
+
+
+
+
