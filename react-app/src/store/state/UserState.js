@@ -1,5 +1,5 @@
 import { observable, override, action, makeObservable, flow } from "mobx";
-import { BaseState } from "../base/";
+import { BaseState, BaseModel } from "../base/";
 import UserApi from "../../api/User";
 import UserModel from "../models/UserModel";
 
@@ -11,7 +11,7 @@ export default class UserState extends BaseState {
   @observable saving = false;
   @observable isLoading = true;
   @observable list = [];
-  @observable model = null;
+  @observable model: BaseModel = null;
   @observable isEditing = false;
   constructor(root) {
     super(root);

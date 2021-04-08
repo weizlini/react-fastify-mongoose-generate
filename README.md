@@ -89,6 +89,13 @@ the models and state classes
 
 and enjoy!
 
+## Front-End Configuration
+the front end is build using `create-react-app`, 
+which is well maintained
+
+I've used `react-app-rewired` and `customize-cra`
+to modify the babel transpiler settings to allow
+for legacy decorator syntax.
 
 
 
