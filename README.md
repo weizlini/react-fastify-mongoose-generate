@@ -90,7 +90,7 @@ the models and state classes
 and enjoy!
 
 ## Front-End Configuration
-the front end is build using `create-react-app`, 
+the front end is built using `create-react-app`, 
 which is well maintained
 
 I've used `react-app-rewired` and `customize-cra`
