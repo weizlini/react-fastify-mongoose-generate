@@ -37,18 +37,6 @@ export default class BaseModel {
   primaryKey = "";
 
   /**
-   * configuration used the Model.save()
-   *
-   * BaseModel.config.create will be used when the primary key field's value is 0
-   * config.modify in cases where the primary key field's value > 0
-   * @type {{create: null, modify: null}}
-   */
-  config = {
-    create: null,
-    modify: null,
-  };
-
-  /**
    * used when a child model's submit property is different than GET property
    *
    * the property in the JS object output for submitting will use the postAlias if set
@@ -64,7 +52,15 @@ export default class BaseModel {
    * @private
    */
   __fields = [];
+
+  /**
+   * a list fields as in __fields, but only contains those that are submittable (not pseudo)
+   *
+   * @type {Array}
+   * @private
+   */
   __submittable = [];
+
   /**
    * this is set when BaseModel.save() is called during validation and saving
    * @type {boolean}
@@ -131,14 +127,6 @@ export default class BaseModel {
    */
   fields() {
     return this.__fields;
-  }
-
-  partialValidity(fields) {
-    let validity = true;
-    fields.forEach((k) => {
-      if (!this[k].isValid) validity = false;
-    });
-    return validity;
   }
 
   /**
@@ -312,15 +300,6 @@ export default class BaseModel {
   setValue(key, value) {
     this[key].setValue(value);
     // this.isDirty = Object.values(this.dirty).reduce((p, c) => (p || c))
-  }
-
-  setFields(model) {
-    this.fields().forEach((field) => {
-      if (this[field]) {
-        //console.log(`SET VALUE ${field}`, this[field], model[field])
-        this[field].setValue(model[field].value);
-      }
-    });
   }
 
   /**
